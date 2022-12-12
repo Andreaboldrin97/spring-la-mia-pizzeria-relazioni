@@ -45,10 +45,10 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		promotionService.save(prom2);
 		
 		// pizza
-		Pizza p1 = new Pizza("pizza1", "my p1 desc", 1000 , prom1);
-		Pizza p2 = new Pizza("pizza2", "my p2 desc", 2200, prom1);
-		Pizza p3 = new Pizza("pizza3", "my p3 desc", 400, null);
-		Pizza p4 = new Pizza("pizza4", "my p4 desc", 1200, prom2);
+		Pizza p1 = new Pizza("pizza1", "my p1 desc", 10 , prom1);
+		Pizza p2 = new Pizza("pizza2", "my p2 desc", 22, prom1);
+		Pizza p3 = new Pizza("pizza3", "my p3 desc", 4, null);
+		Pizza p4 = new Pizza("pizza4", "my p4 desc", 12, prom2);
 	
 		pizzaServ.save(p1);
 		pizzaServ.save(p2);
@@ -56,10 +56,10 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		pizzaServ.save(p4);
 		
 		// drink
-		Drink d1 = new Drink("drink 1", "desc drink 1", 10000);
-		Drink d2 = new Drink("drink 2", "desc drink 2", 12000);
-		Drink d3 = new Drink("drink 3", "desc drink 3", 1000);
-		Drink d4 = new Drink("drink 4", "desc drink 4", 20000);
+		Drink d1 = new Drink("drink 1", "desc drink 1", 10);
+		Drink d2 = new Drink("drink 2", "desc drink 2", 12);
+		Drink d3 = new Drink("drink 3", "desc drink 3", 10);
+		Drink d4 = new Drink("drink 4", "desc drink 4", 20);
 		
 		drinkServ.save(d1);
 		drinkServ.save(d2);
@@ -67,6 +67,11 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		drinkServ.save(d4);
 		
 		// test 
+		
+		//test promozione delete 
+							//usiamo questo metedo per prendere l'elemento by id
+		promotionService.delete(promotionService.findPromotionByID(2).get());
+		//pizzaServ.delete(p4);
 		
 		//test pizza + promozione
 		System.err.println("-----------------------------------------------------------");
@@ -91,5 +96,7 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 			}
 		}
 		System.err.println("-----------------------------------------------------------");
+		
+		
 	}
 }

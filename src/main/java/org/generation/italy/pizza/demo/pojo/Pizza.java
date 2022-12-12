@@ -1,6 +1,5 @@
 package org.generation.italy.pizza.demo.pojo;
 
-import java.util.List;
 
 import org.generation.italy.pizza.demo.pojo.inter.PriceableInterface;
 
@@ -12,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -46,7 +44,7 @@ public class Pizza implements PriceableInterface {
 	
 	//creiamo la relazione con la promozzioni
 	@ManyToOne
-	@JoinColumn(name="promotion_id", nullable=true)
+	@JoinColumn(name="promotion_id", nullable = true)
 	private Promotion promotion;
 	
 	// indichiamo il costruttore di default
