@@ -1,5 +1,7 @@
 package org.generation.italy.pizza.demo.pojo;
 
+import java.util.List;
+
 import org.generation.italy.pizza.demo.pojo.inter.PriceableInterface;
 
 import jakarta.persistence.Column;
@@ -8,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -38,6 +42,10 @@ public class Pizza implements PriceableInterface {
 	@Column
 	@Min(value=0)
 	private int price;
+	
+	//creiamo la relazione con la promozzioni
+	@OneToMany( mappedBy = "pizza")
+	private List<Promotion> Promotions;
 	
 	// indichiamo il costruttore di default
 	public Pizza() {};
@@ -72,6 +80,14 @@ public class Pizza implements PriceableInterface {
 		this.description = description;
 	}
 
+	//get & set join
+	public List<Promotion> getPromotions() {
+		return Promotions;
+	}
+
+	public void setPromotions(List<Promotion> promotions) {
+		Promotions = promotions;
+	}
 	
 	//toString
 	@Override
@@ -81,7 +97,7 @@ public class Pizza implements PriceableInterface {
 	}
 
 	// interface method
-	
+
 		@Override
 		public Integer getPrice() {
 			// TODO Auto-generated method stub

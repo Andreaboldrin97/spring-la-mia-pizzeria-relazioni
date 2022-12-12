@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -30,15 +32,21 @@ public class Promotion {
 	@Column(unique = true)
 	private String title;
 	
+	
+	//creiamo la relazione con le pizze
+	@ManyToOne
+	@JoinColumn(name = "pizza_id")
+	private Pizza pizza;
+	
 	//costrutti 
 	public Promotion() {}
 	
-	public Promotion(LocalDate starting_date, LocalDate end_date, String title) {
+	public Promotion(LocalDate starting_date, LocalDate end_date, String title, Pizza pizza) {
 		
 		setStarting_date(starting_date);
 		setEnd_date(end_date);
 		setTitle(title);
-		
+		setPizza(pizza);
 	}
 
 	//get & set
@@ -69,6 +77,15 @@ public class Promotion {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	//get & set join
+
+	public Pizza getPizza() {
+		return pizza;
+	}
+	public void setPizza(Pizza pizza) {
+		this.pizza = pizza;
 	}
 	
 	
