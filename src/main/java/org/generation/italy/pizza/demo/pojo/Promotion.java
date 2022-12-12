@@ -1,6 +1,7 @@
 package org.generation.italy.pizza.demo.pojo;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -33,20 +35,17 @@ public class Promotion {
 	private String title;
 	
 	
-	//creiamo la relazione con le pizze
-	@ManyToOne
-	@JoinColumn(name = "pizza_id")
-	private Pizza pizza;
+	@OneToMany(mappedBy = "promotion")
+	private List<Pizza> allPizza;
 	
 	//costrutti 
 	public Promotion() {}
 	
-	public Promotion(LocalDate starting_date, LocalDate end_date, String title, Pizza pizza) {
+	public Promotion(LocalDate starting_date, LocalDate end_date, String title) {
 		
 		setStarting_date(starting_date);
 		setEnd_date(end_date);
 		setTitle(title);
-		setPizza(pizza);
 	}
 
 	//get & set
@@ -80,13 +79,14 @@ public class Promotion {
 	}
 	
 	//get & set join
+	public List<Pizza> getAllPizza() {
+		return allPizza;
+	}
 
-	public Pizza getPizza() {
-		return pizza;
+	public void setAllPizza(List<Pizza> allPizza) {
+		this.allPizza = allPizza;
 	}
-	public void setPizza(Pizza pizza) {
-		this.pizza = pizza;
-	}
+	
 	
 	
 }

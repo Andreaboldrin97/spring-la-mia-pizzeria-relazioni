@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -44,18 +45,20 @@ public class Pizza implements PriceableInterface {
 	private int price;
 	
 	//creiamo la relazione con la promozzioni
-	@OneToMany( mappedBy = "pizza")
-	private List<Promotion> Promotions;
+	@ManyToOne
+	@JoinColumn(name="promotion_id", nullable=true)
+	private Promotion promotion;
 	
 	// indichiamo il costruttore di default
 	public Pizza() {};
 	
 	//creiamo il costruttore 
-	public Pizza(String name, String description, int price) {
+	public Pizza(String name, String description, int price, Promotion promotion) {
 
 		setName(name);
 		setDescription(description);
 		setPrice(price);
+		setPromotion(promotion);
 	}
 
 	//get & set
@@ -81,12 +84,12 @@ public class Pizza implements PriceableInterface {
 	}
 
 	//get & set join
-	public List<Promotion> getPromotions() {
-		return Promotions;
+	public Promotion getPromotion() {
+		return promotion;
 	}
 
-	public void setPromotions(List<Promotion> promotions) {
-		Promotions = promotions;
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
 	}
 	
 	//toString
@@ -97,7 +100,6 @@ public class Pizza implements PriceableInterface {
 	}
 
 	// interface method
-
 		@Override
 		public Integer getPrice() {
 			// TODO Auto-generated method stub
