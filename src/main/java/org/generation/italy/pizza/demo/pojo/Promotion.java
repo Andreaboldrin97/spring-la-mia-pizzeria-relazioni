@@ -24,10 +24,10 @@ public class Promotion {
 	private int id;
 
 	@NotNull
-	private LocalDate starting_date;
+	private LocalDate startingDate;
 	
 	@NotNull
-	private LocalDate end_date;
+	private LocalDate endDate;
 	
 	@NotNull
 	@Column(unique = true)
@@ -40,10 +40,10 @@ public class Promotion {
 	//costrutti 
 	public Promotion() {}
 	
-	public Promotion(LocalDate starting_date, LocalDate end_date, String title) {
+	public Promotion(LocalDate startingDate, LocalDate endDate, String title) {
 		
-		setStartingDate(starting_date);
-		setEndDate(end_date);
+		setStartingDate(startingDate);
+		setEndDate(endDate);
 		setTitle(title);
 	}
 
@@ -57,17 +57,17 @@ public class Promotion {
 	}
 
 	public LocalDate getStartingDate() {
-		return starting_date;
+		return startingDate;
 	}
-	public void setStartingDate(LocalDate starting_date) {
-		this.starting_date = starting_date;
+	public void setStartingDate(LocalDate startingDate) {
+		this.startingDate = startingDate;
 	}
 
 	public LocalDate getEndDate() {
-		return end_date;
+		return endDate;
 	}
-	public void setEndDate(LocalDate end_date) {
-		this.end_date = end_date;
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
 	}
 
 	public String getTitle() {

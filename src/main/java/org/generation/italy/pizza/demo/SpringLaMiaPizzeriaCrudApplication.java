@@ -69,34 +69,34 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		// test 
 		
 		//test promozione delete 
-							//usiamo questo metedo per prendere l'elemento by id
-		promotionService.delete(promotionService.findPromotionByID(2).get());
-		//pizzaServ.delete(p4);
-		
-		//test pizza + promozione
-		System.err.println("-----------------------------------------------------------");
-		List<Pizza> allPizza = pizzaServ.findAll();
-		
-		for(Pizza pizza : allPizza) {
-			
-			System.out.println(pizza +"\n\t" + pizza.getPromotion());
-		}
-		System.err.println("-----------------------------------------------------------");
-		
-		//test promozione + pizza
-		System.err.println("-----------------------------------------------------------");
-		List<Promotion> promotions = promotionService.findAllPizza();
-		
-		for( Promotion promotion : promotions) {
-			
-			System.out.println(promotion);
-			
-			for (Pizza pizza : promotion.getAllPizza()) {
-				System.out.println("\t" + pizza);
-			}
-		}
-		System.err.println("-----------------------------------------------------------");
-		
+//							//usiamo questo metedo per prendere l'elemento by id
+//		promotionService.delete(promotionService.findPromotionByID(2).get());
+//		//pizzaServ.delete(p4);
+//		
+//		//test pizza + promozione
+//		System.err.println("-----------------------------------------------------------");
+//		List<Pizza> allPizza = pizzaServ.findAll();
+//		
+//		for(Pizza pizza : allPizza) {
+//			
+//			System.out.println(pizza +"\n\t" + pizza.getPromotion());
+//		}
+//		System.err.println("-----------------------------------------------------------");
+//		
+//		//test promozione + pizza
+//		System.err.println("-----------------------------------------------------------");
+//		List<Promotion> promotions = promotionService.findAllPizza();
+//		
+//		for( Promotion promotion : promotions) {
+//			
+//			System.out.println(promotion);
+//			
+//			for (Pizza pizza : promotion.getAllPizza()) {
+//				System.out.println("\t" + pizza);
+//			}
+//		}
+//		System.err.println("-----------------------------------------------------------");
+//		
 		
 	}
 }
