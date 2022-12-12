@@ -43,8 +43,8 @@ public class Promotion {
 	
 	public Promotion(LocalDate starting_date, LocalDate end_date, String title) {
 		
-		setStarting_date(starting_date);
-		setEnd_date(end_date);
+		setStartingDate(starting_date);
+		setEndDate(end_date);
 		setTitle(title);
 	}
 
@@ -57,17 +57,17 @@ public class Promotion {
 		this.id = id;
 	}
 
-	public LocalDate getStarting_date() {
+	public LocalDate getStartingDate() {
 		return starting_date;
 	}
-	public void setStarting_date(LocalDate starting_date) {
+	public void setStartingDate(LocalDate starting_date) {
 		this.starting_date = starting_date;
 	}
 
-	public LocalDate getEnd_date() {
+	public LocalDate getEndDate() {
 		return end_date;
 	}
-	public void setEnd_date(LocalDate end_date) {
+	public void setEndDate(LocalDate end_date) {
 		this.end_date = end_date;
 	}
 
@@ -87,6 +87,9 @@ public class Promotion {
 		this.allPizza = allPizza;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "(" + getId() + ")" + " " + getTitle() + " - " + getStartingDate() + " " + getEndDate();
+	}
 	
 }

@@ -2,6 +2,7 @@ package org.generation.italy.pizza.demo;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.generation.italy.pizza.demo.pojo.Drink;
 import org.generation.italy.pizza.demo.pojo.Pizza;
@@ -46,7 +47,7 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		// pizza
 		Pizza p1 = new Pizza("pizza1", "my p1 desc", 1000 , prom1);
 		Pizza p2 = new Pizza("pizza2", "my p2 desc", 2200, prom1);
-		Pizza p3 = new Pizza("pizza3", "my p3 desc", 400, prom2);
+		Pizza p3 = new Pizza("pizza3", "my p3 desc", 400, null);
 		Pizza p4 = new Pizza("pizza4", "my p4 desc", 1200, prom2);
 	
 		pizzaServ.save(p1);
@@ -65,7 +66,30 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		drinkServ.save(d3);
 		drinkServ.save(d4);
 		
+		// test 
 		
+		//test pizza + promozione
+		System.err.println("-----------------------------------------------------------");
+		List<Pizza> allPizza = pizzaServ.findAll();
 		
+		for(Pizza pizza : allPizza) {
+			
+			System.out.println(pizza +"\n\t" + pizza.getPromotion());
+		}
+		System.err.println("-----------------------------------------------------------");
+		
+		//test promozione + pizza
+		System.err.println("-----------------------------------------------------------");
+		List<Promotion> promotions = promotionService.findAllPizza();
+		
+		for( Promotion promotion : promotions) {
+			
+			System.out.println(promotion);
+			
+			for (Pizza pizza : promotion.getAllPizza()) {
+				System.out.println("\t" + pizza);
+			}
+		}
+		System.err.println("-----------------------------------------------------------");
 	}
 }
