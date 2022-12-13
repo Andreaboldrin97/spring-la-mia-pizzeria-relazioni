@@ -20,7 +20,8 @@
 				      <th scope="col">NAME</th>
 				      <th scope="col">DESCRIPTION</th>
 				      <th scope="col">PRICE</th>
-				       <th scope="col">PROMOZIONE</th>
+				      <th scope="col">PROMOZIONE</th>
+				       <th scope="col">INGREDIENTI</th>
 				      <th scope="col">
 				      	<a class="btn btn-primary" th:href="@{/pizza/create}">Create Pizza</a>
 				      </th>
@@ -35,6 +36,11 @@
 				      <td>
 				       	<div
 				       		th:text="${pizza.promotion}">
+				       	</div>
+				      </td>
+				      <td>
+				       	<div
+				       		th:text="${pizza.ingredients}">
 				       	</div>
 				      </td>
 				      <td>

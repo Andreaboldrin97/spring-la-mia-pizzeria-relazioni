@@ -73,6 +73,19 @@
 						[[*{title}]]
 					</option>
 				</select>
+				<label>Categorie</label>
+				<div
+					th:each="ingredient : ${ingredients}"
+					th:object="${ingredient}"
+				>
+				<input 
+					type="checkbox" 
+					name="ingredients" 
+					
+					th:value="*{id}" 
+					th:field="${pizza.ingredients}">
+				<label>[[*{name}]]</label>
+			</div>	
 			
 			<input type="submit" value="save" class="btn btn-success">
 		</th:block>

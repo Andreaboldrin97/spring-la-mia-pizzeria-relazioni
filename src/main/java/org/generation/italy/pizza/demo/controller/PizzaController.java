@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.generation.italy.pizza.demo.pojo.Drink;
+import org.generation.italy.pizza.demo.pojo.Ingredient;
 import org.generation.italy.pizza.demo.pojo.Pizza;
 import org.generation.italy.pizza.demo.pojo.Promotion;
+import org.generation.italy.pizza.demo.service.IngredientService;
 import org.generation.italy.pizza.demo.service.PizzaService;
 import org.generation.italy.pizza.demo.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,9 @@ public class PizzaController {
 	
 	@Autowired
 	private PromotionService promotionService;
+	
+	@Autowired
+	private IngredientService ingredientService;
 
 	//GET PATH without parameters
 		
@@ -58,6 +63,9 @@ public class PizzaController {
 			
 			List<Promotion> promotions = promotionService.findAll();
 			model.addAttribute("promotions", promotions);
+			
+			List<Ingredient> ingredients = ingredientService.findAll();
+			model.addAttribute("ingredients", ingredients);
 			
 			//a quale view fa riferimento
 			return "pizzaCRUD/create";
