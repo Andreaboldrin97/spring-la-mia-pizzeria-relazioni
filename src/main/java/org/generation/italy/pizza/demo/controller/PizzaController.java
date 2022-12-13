@@ -98,6 +98,10 @@ public class PizzaController {
 			Pizza pizza  = optPizza.get();
 			model.addAttribute("pizza", pizza);
 			
+			//importo anche la lista delle promozioni
+			List<Promotion> promotions = promotionService.findAll();
+			model.addAttribute("promotions", promotions);
+			
 			//a quale view fa riferimento
 			return "pizzaCRUD/update";
 		}

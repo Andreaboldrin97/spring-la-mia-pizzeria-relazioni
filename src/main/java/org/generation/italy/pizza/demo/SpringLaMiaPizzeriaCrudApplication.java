@@ -5,9 +5,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.generation.italy.pizza.demo.pojo.Drink;
+import org.generation.italy.pizza.demo.pojo.Ingredient;
 import org.generation.italy.pizza.demo.pojo.Pizza;
 import org.generation.italy.pizza.demo.pojo.Promotion;
 import org.generation.italy.pizza.demo.service.DrinkService;
+import org.generation.italy.pizza.demo.service.IngredientService;
 import org.generation.italy.pizza.demo.service.PizzaService;
 import org.generation.italy.pizza.demo.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,9 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 	@Autowired
 	private PromotionService promotionService;
 	
+	@Autowired
+	private IngredientService ingredientService;
+	
 	//DATI FAKER
 	@Override
 	public void run(String... args) throws Exception {
@@ -43,6 +48,21 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		
 		promotionService.save(prom1);
 		promotionService.save(prom2);
+		
+		//ingredient
+		Ingredient ing1 = new Ingredient("ing1");
+		Ingredient ing2 = new Ingredient("ing2");
+		Ingredient ing3 = new Ingredient("ing3");
+		Ingredient ing4 = new Ingredient("ing4");
+		Ingredient ing5 = new Ingredient("ing5");
+		Ingredient ing6 = new Ingredient("ing6");
+		
+		ingredientService.save(ing1);
+		ingredientService.save(ing2);
+		ingredientService.save(ing3);
+		ingredientService.save(ing4);
+		ingredientService.save(ing5);
+		ingredientService.save(ing6);
 		
 		// pizza
 		Pizza p1 = new Pizza("pizza1", "my p1 desc", 10 , prom1);

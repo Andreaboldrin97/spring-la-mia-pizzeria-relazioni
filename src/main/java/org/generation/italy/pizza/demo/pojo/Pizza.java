@@ -1,6 +1,9 @@
 package org.generation.italy.pizza.demo.pojo;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.generation.italy.pizza.demo.pojo.inter.PriceableInterface;
 
 import jakarta.persistence.Column;
@@ -9,7 +12,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
@@ -47,6 +52,16 @@ public class Pizza implements PriceableInterface {
 	@JoinColumn(name="promotion_id", nullable = true)
 	private Promotion promotion;
 	
+	//creiamo la relazione con la promozzioni
+	@ManyToMany()
+	@JoinTable(
+			name = "ingredient_pizza",
+			joinColumns = @JoinColumn(name = "ingredient_id"),
+			inverseJoinColumns = @JoinColumn(name = "pizza_id")
+			)
+	private List<Ingredient> ingredients;
+	
+	//COSTRUCTS	
 	// indichiamo il costruttore di default
 	public Pizza() {};
 	
@@ -58,7 +73,14 @@ public class Pizza implements PriceableInterface {
 		setPrice(price);
 		setPromotion(promotion);
 	}
-
+	
+	//creiamo il costruttore + ingredienti
+	public Pizza(String name, String description, int price, Promotion promotion, Ingredient ...ingredients ) {
+		
+		this(name, description, price, promotion);
+		setIngredients(Arrays.asList(ingredients));
+	}
+	
 	//get & set
 	public int getId() {
 		return id;
@@ -85,11 +107,17 @@ public class Pizza implements PriceableInterface {
 	public Promotion getPromotion() {
 		return promotion;
 	}
-
 	public void setPromotion(Promotion promotion) {
 		this.promotion = promotion;
 	}
 	
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+
 	//toString
 	@Override
 	public String toString() {
