@@ -110,6 +110,9 @@ public class PizzaController {
 			List<Promotion> promotions = promotionService.findAll();
 			model.addAttribute("promotions", promotions);
 			
+			List<Ingredient> ingredients = ingredientService.findAll();
+			model.addAttribute("ingredients", ingredients);
+			
 			//a quale view fa riferimento
 			return "pizzaCRUD/update";
 		}
