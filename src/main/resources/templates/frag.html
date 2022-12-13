@@ -78,5 +78,36 @@
 			
 			<input type="submit" value="save" class="btn btn-success">
 		</th:block>
+		
+		<!-- FORM PROMOTION CRUD FRAGMENT -->
+		<th:block th:fragment="form-crud-promotion">
+			<div class="mb-3">
+				<label class="form-label">Data inizio</label>
+				<input class="form-control" type="date" name="startingDate" th:field="*{startingDate}">
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Data fine</label>
+				<input class="form-control" type="date" name="endDate" th:field="*{endDate}">
+			</div>
+			<div class="mb-3">
+				<label class="form-label">nome promozione</label>
+				<input class="form-control" type="text" name="title" th:field="*{title}">
+			</div>
+			<div
+				th:each="pizza : ${allPizza}"
+				th:object="${pizza}"
+			>
+				<input 
+					type="checkbox" 
+					name="allPizza" 
+					
+					th:value="*{id}" 
+					th:field="${promotion.allPizza}">
+				<label>[[*{name}]]</label>
+			</div>	
+		
+			<input type="submit" value="save" class="btn btn-success">
+		</th:block>
+		
 	</body>
 </html>
