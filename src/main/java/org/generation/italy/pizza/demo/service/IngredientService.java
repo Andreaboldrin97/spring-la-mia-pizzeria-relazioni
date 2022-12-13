@@ -5,8 +5,11 @@ import java.util.Optional;
 
 import org.generation.italy.pizza.demo.pojo.Ingredient;
 import org.generation.italy.pizza.demo.repo.IngredientRepo;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class IngredientService {
@@ -40,5 +43,25 @@ public class IngredientService {
 			public void delete(Ingredient ingredient) {
 				//grazie all'interfaccia JpaRepository possiamo usare il method delete
 				ingredientRepo.delete(ingredient);
+			}
+			
+			//funzione per le pizze correlate
+			
+			//usiamo questa annotation per mantere il canele aperto tra il db e le query
+			@Transactional
+			public List<Ingredient> findAllPizza() {
+				
+				//inserisco in una lista tutti gli ingredienti
+				List<Ingredient> ingredients = ingredientRepo.findAll();
+				
+				//ciclo su ogni promozione
+				for(Ingredient ingredient : ingredients) {
+					
+					//usiamo questa annotazione per creare la query al db
+					Hibernate.initialize(ingredient.getPizza());
+				}
+				
+				//ritorno la stista con la join
+				return ingredients;
 			}
 }
