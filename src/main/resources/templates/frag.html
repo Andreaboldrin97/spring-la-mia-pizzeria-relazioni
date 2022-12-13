@@ -106,7 +106,7 @@
 				<input class="form-control" type="date" name="endDate" th:field="*{endDate}">
 			</div>
 			<div class="mb-3">
-				<label class="form-label">nome promozione</label>
+				<label class="form-label">Nome promozione</label>
 				<input class="form-control" type="text" name="title" th:field="*{title}">
 			</div>
 			<div
@@ -119,6 +119,28 @@
 					
 					th:value="*{id}" 
 					th:field="${promotion.allPizza}">
+				<label>[[*{name}]]</label>
+			</div>	
+		
+			<input type="submit" value="save" class="btn btn-success">
+		</th:block>
+		
+		<!-- FORM PROMOTION CRUD FRAGMENT -->
+		<th:block th:fragment="form-crud-ingredient">
+			<div class="mb-3">
+				<label class="form-label">Nome ingrediente</label>
+				<input class="form-control" type="text" name="name" th:field="*{name}">
+			</div>
+			<div
+				th:each="pizza : ${pizzas}"
+				th:object="${pizza}"
+			>
+				<input 
+					type="checkbox" 
+					name="pizzas" 
+					
+					th:value="*{id}" 
+					th:field="${ingredient.pizza}">
 				<label>[[*{name}]]</label>
 			</div>	
 		

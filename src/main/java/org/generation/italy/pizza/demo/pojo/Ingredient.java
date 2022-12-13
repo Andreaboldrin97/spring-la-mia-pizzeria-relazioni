@@ -24,7 +24,7 @@ public class Ingredient {
 	
 	//creiamo la relazione con la promozzioni con le pizze
 	@ManyToMany(mappedBy = "ingredients")
-	private List<Pizza> pizzas;
+	private List<Pizza> pizza;
 	
 	//COSTRUCTS
 	// indichiamo il costruttore di default
@@ -57,10 +57,10 @@ public class Ingredient {
 	}
 
 	public List<Pizza> getPizza() {
-		return pizzas;
+		return pizza;
 	}
 	public void setPizza(List<Pizza> pizza) {
-		this.pizzas = pizza;
+		this.pizza = pizza;
 	}
 	
 	@Override
