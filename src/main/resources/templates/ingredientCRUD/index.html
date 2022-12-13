@@ -37,7 +37,7 @@
 				       </td>
 				      <td>
 				      	<a class="btn btn-primary" th:href="@{/ingredient/edit/{id} (id = *{id})}" >Edit</a>
-					  	<a class="btn btn-danger" href="#" >Delete</a>
+					  	<a class="btn btn-danger"th:href="@{/ingredient/delete/{id} (id = *{id})}">Delete</a>
 					  </td>
 				    </tr>
 				  </tbody>

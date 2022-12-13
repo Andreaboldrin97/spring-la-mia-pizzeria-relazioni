@@ -32,7 +32,7 @@ public class IngredientController {
 	
 	//INDEX INGREDIENT
 	//Indichiamo a quale path fa riferimento questo metodo
-	@GetMapping("/ingridient")
+	@GetMapping("/ingredient")
 	public String getIngredients(Model model) {
 		//assegnamo ad un lista i record del db
 		List<Ingredient> ingredients = ingredientService.findAllPizza();
@@ -85,7 +85,7 @@ public class IngredientController {
 		ingredientService.save(ingredient);
 		
 		//a quale view ritorna
-		return "redirect:/ingridient";
+		return "redirect:/ingredient";
 	}
 	
 	//CREATE PROMOTION
@@ -132,6 +132,21 @@ public class IngredientController {
 			ingredientService.save(ingredient);
 			
 			//a quale view ritorna
-			return "redirect:/ingridient";
+			return "redirect:/ingredient";
 		}
+		
+		//Indichiamo a quale path fa riferimento questo metodo
+				@GetMapping("/ingredient/delete/{id}")
+				public String deleteIngredient(@PathVariable("id") int id) {
+					
+					// selezioniamo il record con quell'id
+					Optional<Ingredient> optIngredient = ingredientService.findIngredientByID(id);
+					Ingredient ingredient  = optIngredient.get();
+					
+					//metodo per eliminare un record
+					ingredientService.delete(ingredient);
+					
+					//a quale view ritorna
+					return  "redirect:/ingredient";
+				}
 }
