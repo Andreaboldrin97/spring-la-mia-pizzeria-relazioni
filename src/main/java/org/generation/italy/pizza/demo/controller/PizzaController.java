@@ -96,7 +96,7 @@ public class PizzaController {
 			return "redirect:/allPizzas";
 		}
 		
-		//CREATE PIZZA
+		//EDIT PIZZA
 		//Indichiamo a quale path fa riferimento questo metodo
 		@GetMapping("/pizza/edit/{id}")
 		public String editPizza(@PathVariable("id") int id, Model model) {

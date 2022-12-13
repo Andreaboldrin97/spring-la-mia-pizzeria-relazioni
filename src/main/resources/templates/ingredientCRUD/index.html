@@ -17,8 +17,8 @@
 				  <thead>
 				    <tr>
 				      <th scope="col">ID</th>
-				      <th scope="col">NAME</th>
-				      <th scope="col">PIZZA NAME</th>
+				      <th scope="col">NOME</th>
+				      <th scope="col">PIZZA NOME</th>
 				      <th scope="col">
 				      	<a class="btn btn-primary" th:href="@{/ingredient/create}">Create Ingredient</a>
 				      </th>
@@ -36,7 +36,7 @@
 				       		</div>
 				       </td>
 				      <td>
-				      	<a class="btn btn-primary" href="#">Edit</a>
+				      	<a class="btn btn-primary" th:href="@{/ingredient/edit/{id} (id = *{id})}" >Edit</a>
 					  	<a class="btn btn-danger" href="#" >Delete</a>
 					  </td>
 				    </tr>

@@ -85,4 +85,6 @@ public class PromotionController {
 				//a quale view ritorna
 				return "redirect:/promotion";
 			}
+			
+			
 }

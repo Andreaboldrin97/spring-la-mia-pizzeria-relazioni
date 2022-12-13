@@ -34,7 +34,7 @@ public class IngredientService {
 			
 			//funzione per recuperare un record specifico in base all'id
 				//utilizzeremo l'Optional<Pizza> per controllare se un valore è presente o non 
-			public Optional<Ingredient> findPromotionByID(int id){
+			public Optional<Ingredient> findIngredientByID(int id){
 				
 				return ingredientRepo.findById(id);
 			}
