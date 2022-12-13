@@ -57,6 +57,19 @@
 				<label class="form-label">Prezzo pizza</label>
 				<input class="form-control" type="number" name="price" th:field="*{price}">
 			</div>
+			<label>Promozione</label>
+				<select name="promotion" class="mb-3">
+					<option th:value="null" th:field="${pizza.promotion}">-</option>
+					<option
+						th:each="promotion : ${promotions}"
+						th:object="${promotion}"
+							
+						th:value="*{id}"
+						th:field="${pizza.promotion}"
+					>
+						[[*{title}]]
+					</option>
+				</select>
 			
 			<input type="submit" value="save" class="btn btn-success">
 		</th:block>
