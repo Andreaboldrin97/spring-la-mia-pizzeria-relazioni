@@ -75,6 +75,12 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		pizzaServ.save(p3);
 		pizzaServ.save(p4);
 		
+		Pizza p5 = new Pizza("pizza3", "my p3 desc", 4, null, ing1, ing4);
+		Pizza p6 = new Pizza("pizza4", "my p4 desc", 12, prom2, ing5, ing6);
+		
+		pizzaServ.save(p5);
+		pizzaServ.save(p6);
+		
 		// drink
 		Drink d1 = new Drink("drink 1", "desc drink 1", 10);
 		Drink d2 = new Drink("drink 2", "desc drink 2", 12);
@@ -118,24 +124,20 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 //		System.err.println("-----------------------------------------------------------");
 		
 //		//test pizza + promozione + ingredienti
-		System.err.println("-----------------------------------------------------------");
-		Pizza p5 = new Pizza("pizza3", "my p3 desc", 4, null, ing1, ing4);
-		Pizza p6 = new Pizza("pizza4", "my p4 desc", 12, prom2, ing5, ing6);
+//		System.err.println("-----------------------------------------------------------");
 		
-		pizzaServ.save(p5);
-		pizzaServ.save(p6);
 		
-		List<Ingredient> ingredients = ingredientService.findAllPizza();
-		
-		for( Ingredient ingredient : ingredients) {
-			
-			System.out.println(ingredient);
-			
-			for (Pizza pizza : ingredient.getPizza()) {
-				System.out.println("\t" + pizza);
-			}
-		}
-		
-		System.err.println("-----------------------------------------------------------");
+//		List<Ingredient> ingredients = ingredientService.findAllPizza();
+//		
+//		for( Ingredient ingredient : ingredients) {
+//			
+//			System.out.println(ingredient);
+//			
+//			for (Pizza pizza : ingredient.getPizza()) {
+//				System.out.println("\t" + pizza);
+//			}
+//		}
+//		
+//		System.err.println("-----------------------------------------------------------");
 	}
 }
