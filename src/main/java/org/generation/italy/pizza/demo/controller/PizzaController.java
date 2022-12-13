@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.generation.italy.pizza.demo.pojo.Drink;
 import org.generation.italy.pizza.demo.pojo.Pizza;
+import org.generation.italy.pizza.demo.pojo.Promotion;
 import org.generation.italy.pizza.demo.service.PizzaService;
+import org.generation.italy.pizza.demo.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,9 @@ public class PizzaController {
 	//indichiamo la dipendenza da iniettare
 	@Autowired
 	private PizzaService pizzaService;
+	
+	@Autowired
+	private PromotionService promotionService;
 
 	//GET PATH without parameters
 		
@@ -50,6 +55,9 @@ public class PizzaController {
 			
 			Pizza pizza = new Pizza();
 			model.addAttribute("pizza", pizza);
+			
+			List<Promotion> promotions = promotionService.findAll();
+			model.addAttribute("promotions", promotions);
 			
 			//a quale view fa riferimento
 			return "pizzaCRUD/create";

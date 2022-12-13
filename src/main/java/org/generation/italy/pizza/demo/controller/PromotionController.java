@@ -9,15 +9,22 @@ import org.generation.italy.pizza.demo.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import jakarta.validation.Valid;
 
 
 @Controller
 public class PromotionController {
 
 	//indichiamo la dipendenza da iniettare
-		//@Autowired
-		//private PizzaService pizzaService;
+		@Autowired
+		private PizzaService pizzaService;
+		
 		@Autowired
 		private PromotionService promotionService;
 		
@@ -30,12 +37,52 @@ public class PromotionController {
 				
 				model.addAttribute("promotions", promotions);
 				
-				for( Promotion promotion : promotions) {		
-					for (Pizza pizza : promotion.getAllPizza()) {
-						model.addAttribute("pizzas", pizza);
-					}
-				}
 				//a quale view fa riferimento
 				return "promotionCRUD/index";
+			}
+			
+		//CREATE PROMOTION
+			@GetMapping("/promotion/create")
+			public String createPromotion(Model model) {
+				
+				Promotion promotion = new Promotion();
+				model.addAttribute("promotion", promotion);
+				
+				List<Pizza> allPizza = pizzaService.findAll();
+				model.addAttribute("allPizza", allPizza);
+				
+				return "promotionCRUD/create";
+			}
+			@PostMapping("/promotion/store")
+			public String storePromotion(@Valid @ModelAttribute("promotion") Promotion promotion,
+					//Intergaccia per la registrazione degli errori 
+					BindingResult bindingResult, 
+					//Interfaccia secondaria di Model per passare attributi
+					RedirectAttributes redirectAttributes) {
+
+				//veriafichiamo la presenza di errori nella compilazione dei campi del form
+				//hasErrors() ci ritorna un valore booleano sulla presenza o no di errori
+				if(bindingResult.hasErrors()) {
+				
+				//riportiamo gli errori all'interno della view indicata
+				redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+				
+				//ritorniamo al form con gli errori se i dati sono errati
+				return "/promotion/create";
+				
+				}
+				//metodo per otterere le pizze inserite
+				List<Pizza> allPizzaChoise = promotion.getAllPizza();
+				for (Pizza pizza : allPizzaChoise ) {
+					//inserisco le pizze da salvare
+					pizza.setPromotion(promotion);
+					
+				}
+				
+				//metodo per salvare un record
+				promotionService.save(promotion);
+				
+				//a quale view ritorna
+				return "redirect:/promotion";
 			}
 }
