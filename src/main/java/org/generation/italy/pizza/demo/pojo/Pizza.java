@@ -117,6 +117,23 @@ public class Pizza implements PriceableInterface {
 	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
+	
+	// metodo per controllare se un elemento non è duplicato all'interno dell'update
+	public void addIngredients (Ingredient ingredient) {
+		
+		boolean finded = false;
+		// conttollo sulla presenza dell'elemento 
+		for (Ingredient i : getIngredients()) {
+			if (i.getId() == ingredient.getId()) {
+				finded = true;
+			}
+		}
+		
+		if(!finded) {
+			getIngredients().add(ingredient);
+		}
+		
+	}
 
 	//toString
 	@Override

@@ -124,7 +124,7 @@ public class IngredientController {
 			List<Pizza> allPizzaChoise = ingredient.getPizza();
 			for (Pizza pizza : allPizzaChoise ) {
 				//inserisco le pizze da salvare
-				pizza.getIngredients().add(ingredient);
+				pizza.addIngredients(ingredient);
 				
 			}
 			
