@@ -148,6 +148,10 @@ public class IngredientController {
 					Optional<Ingredient> optIngredient = ingredientService.findIngredientByID(id);
 					Ingredient ingredient  = optIngredient.get();
 					
+					for (Pizza pizza : ingredient.getPizza()) {
+						pizza.getIngredients().remove(ingredient);
+					}
+					
 					//metodo per eliminare un record
 					ingredientService.delete(ingredient);
 					

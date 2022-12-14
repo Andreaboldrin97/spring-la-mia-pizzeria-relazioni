@@ -24,7 +24,7 @@ public class Ingredient {
 	private String name;
 	
 	//creiamo la relazione con la promozzioni con le pizze
-	@ManyToMany(mappedBy = "ingredients", cascade = CascadeType.REMOVE)
+	@ManyToMany(mappedBy = "ingredients")
 	private List<Pizza> pizza;
 	
 	//COSTRUCTS
