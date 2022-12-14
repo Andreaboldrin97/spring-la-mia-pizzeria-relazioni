@@ -43,7 +43,7 @@ public class IngredientController {
 		return "ingredientCRUD/index";
 	}
 	
-	//CREATE PROMOTION
+	//CREATE INGREDIENT
 	@GetMapping("/ingredient/create")
 	public String createIngredient(Model model) {
 		
@@ -88,7 +88,7 @@ public class IngredientController {
 		return "redirect:/ingredient";
 	}
 	
-	//CREATE PROMOTION
+	//UPDATE INGREDIENT
 		@GetMapping("/ingredient/edit/{id}")
 		public String editIngredient(@PathVariable("id") int id, Model model) {
 			
