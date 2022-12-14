@@ -75,8 +75,8 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		pizzaServ.save(p3);
 		pizzaServ.save(p4);
 		
-		Pizza p5 = new Pizza("pizza3", "my p3 desc", 4, null, ing1, ing4);
-		Pizza p6 = new Pizza("pizza4", "my p4 desc", 12, prom2, ing5, ing6);
+		Pizza p5 = new Pizza("pizza5", "my p5 desc", 4, null, ing1, ing4);
+		Pizza p6 = new Pizza("pizza6", "my p6 desc", 12, prom2, ing5, ing6);
 		
 		pizzaServ.save(p5);
 		pizzaServ.save(p6);

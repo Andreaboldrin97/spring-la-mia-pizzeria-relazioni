@@ -111,26 +111,31 @@ public class IngredientController {
 
 			//veriafichiamo la presenza di errori nella compilazione dei campi del form
 			//hasErrors() ci ritorna un valore booleano sulla presenza o no di errori
-			if(bindingResult.hasErrors()) {
-			
+			if(bindingResult.hasErrors()) {			
 				//riportiamo gli errori all'interno della view indicata
-				redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
-				
+				redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());				
 				//ritorniamo al form con gli errori se i dati sono errati
-				return "/ingredient/update";
-			
+				return "/ingredient/update";			
 			}
+			//azzeriamo l'ingrediente prima di riassegnarlo 
+			//prendiamo l'id
+			Optional<Ingredient> optIngredient = ingredientService.findIngredientByID(ingredient.getId());
+			Ingredient ing  = optIngredient.get();
+			//azzeriamo l'ingrediente prima di salvarlo
+			for (Pizza pizza : ing.getPizza()) {
+				pizza.getIngredients().remove(ing);
+			}
+			
 			//metodo per otterere le pizze inserite
-			List<Pizza> allPizzaChoise = ingredient.getPizza();
-			for (Pizza pizza : allPizzaChoise ) {
+			List<Pizza> allPizzaChoise = ingredient.getPizza();		
+			for (Pizza pizza : allPizzaChoise ) {	
 				//inserisco le pizze da salvare
-				pizza.addIngredients(ingredient);
-				
+				pizza.addIngredients(ingredient);		
 			}
 			
 			//metodo per salvare un record
 			ingredientService.save(ingredient);
-			
+			System.err.println(ingredient.getPizza());
 			//a quale view ritorna
 			return "redirect:/ingredient";
 		}
